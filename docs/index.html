@@ -8,10 +8,43 @@
     <title>Hello, world!</title>
 </head>
 <body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Binary to Decimal Converter</a>
+    </nav>
     <div id="app" class="container-fluid">
+        <div v-if="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+            A simple warning alert—check it out!
+        </div>
         <div class="row">
             <div class="col">
                 <h1>{{ message }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Binary Value</span>
+                    </div>
+                    <input type="text" class="form-control" v-on:keydown="checkbin" v-on:keyup="binkeypressed" v-model="bindata">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="inputGroup-sizing-default">{{nbits}} Bits</span>
+                      </div>
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="button-addon2" v-on:click="convert">Convert</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Decimal Value</span>
+                    </div>
+                    <input type="text" class="form-control" v-model="decimalvalue" readonly>
+                </div>
             </div>
         </div>
     </div>
