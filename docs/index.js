@@ -1,12 +1,16 @@
 var app = new Vue({
     el: '#app',
     data: {
-      message: 'Hello Vue!',
+      message: 'Binary to Decimal Calculator!',
       bindata: '',
+      oldbindata: '',
       nbits: 0,
       decimalvalue: 0,
       alert: false,
-    },
+   },
+   computed: {
+   
+   },
     methods: {
         convert: function (){
             var value = 0;
@@ -19,14 +23,26 @@ var app = new Vue({
             }
             this.decimalvalue = value;
         },
-        binkeypressed: function(){
-            this.nbits = this.bindata.length;
-        },
         checkbin: function(e){
             if (!(e.key === '0' || e.key === '1')){
+                this.alert = true;
                 e.preventDefault();
                 return false
             } 
-        }
+        },   
+        countbits: function(e){
+            for (var i = 0; i < this.bindata.length; i++){
+                if (!(this.bindata[i] === '0' || this.bindata[i] === '1')){
+                    this.alert = true;
+                    e.preventDefault();
+                    this.bindata = this.oldbindata;    
+                }
+            }
+            this.oldbindata = this.bindata;
+            this.nbits = this.bindata.length;
+        },
+        closealert: function () {
+            this.alert = false;
+        } 
     },
   })
